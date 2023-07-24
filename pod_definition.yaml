@@ -1,13 +1,16 @@
 # usually pods are created using workload resources (deployments)
-apiVersion: v1
-kind: Pod
+apiVersion: batch/v1
+kind: Job
 metadata:
-  name: nginx-pod
-spec:
-  containers:
-    - name: nginx
-      image: nginx
-      ports:
-        - containerPort: 80
-  os:
-    name: linux
+  name: hello-pod
+  labels:
+    name: hello-pod
+template:
+  spec:
+    containers:
+      - name: hello
+        image: busybox:1.28
+        command: ['sh', '-c', 'echo Hello k8s!" && sleep 3600']
+    restartPolicy: OnFailure
+    os:
+      name: linux
