@@ -1,0 +1,8 @@
+apiVersion: kustomize.conifg.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - pod_definition.yaml
+  - configmaps.yaml
+  - configmap/configmaps.yaml
+  - configmap/configmap2.yaml
+  
