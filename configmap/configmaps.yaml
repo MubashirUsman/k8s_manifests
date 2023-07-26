@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: special-config
+  namespace: default
+data:
+  special.how: very
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-config
+  namespace: default
+data:
+  log_level: INFO
+
+
+# USE ENVFROM 
+# spec:
+  
+#   containers:
+  
+#     - name: test-container
+  
+#       image: registry.k8s.io/busybox
+  
+#       command: [ "/bin/sh", "-c", "env" ]
+  
+#       envFrom:
+  
+#       - configMapRef:
+  
+#           name: special-config
+  
+#   restartPolicy: Never
+
+
+#   USE VALUEFROM IN ENV 
+  
+#   spec:
+  
+#   containers:
+  
+#     - name: test-container
+  
+#       image: registry.k8s.io/busybox
+  
+#       command: [ "/bin/sh", "-c", "env" ]
+  
+#       env:
+  
+#         - name: SPECIAL_LEVEL_KEY
+  
+#           valueFrom:
+  
+#             configMapKeyRef:
+  
+#               name: special-config
+  
+#               key: special.how
