@@ -11,7 +11,9 @@
 #     repoURL: URL of the repository (eg https://github.com/argoproj/argocd-example-apps.git)
 #     path: Path within the repository where Kubernetes manifests (and/or Helm, Kustomize, Jsonnet resources) are located
 #     destination: Defines which Kubernetes cluster/namespace to deploy to, name: Name of the cluster (within Argo CD) to deploy to
-#     server: API Server URL for the cluster
+#     server: API Server URL for the cluster, either provide server URL or name of the cluster and not both
+# Control how changes are made to applications and their corresponding cluster resources (like deployments, services) by applicationset controller by defining sync policy
+# 
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
