@@ -1,0 +1,5 @@
+# Generator: List (a literal list with elements, e.g cluster name and ip), Cluster (ensure new clusters are defined within argocd)
+# Git Generator: json file in git is edited and generators are updated
+# With generator we can generate parameters to be substituted in applications
+# Used for add-ons and deploying applications to multiple clusters
+
