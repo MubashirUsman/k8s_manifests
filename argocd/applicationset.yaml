@@ -5,7 +5,13 @@
 # ApplicationSet controller is Used for add-ons and deploying applications to multiple clusters
 # Argocd Controller create/update/delete Application resource, 
 # takes ApplicationSet resource as input, and outputting one or more Argo CD Application resources
-# Application's k8s resources are created by argocd as defined in spec field
+# Application's k8s resources (deployments, services, configmaps etc) are created by argocd as defined in spec field: parameters from Generator + template = app
+# Template fields: 
+#     project refers to the Argo CD Project in use (default may be used here to utilize the default Argo CD Project),
+#     repoURL: URL of the repository (eg https://github.com/argoproj/argocd-example-apps.git)
+#     path: Path within the repository where Kubernetes manifests (and/or Helm, Kustomize, Jsonnet resources) are located
+#     destination: Defines which Kubernetes cluster/namespace to deploy to, name: Name of the cluster (within Argo CD) to deploy to
+#     server: API Server URL for the cluster
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
