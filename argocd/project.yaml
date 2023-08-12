@@ -1,0 +1,28 @@
+# Projects provide a logical grouping of applications, like what (repo), where (destination
+# cluster)
+# Define project roles to provide application RBAC
+# Every application belongs to a single project
+# Projects can be created to give teams different level of access to namespaces
+# Command to create a project "myproj" with in the given repo, namespace and cluster 
+# Declaratively add source repo
+spec:
+  sourceRepos:
+    # Do not use the test repo in argoproj
+    - '!ssh://git@GITHUB.com:argoproj/test'
+    # Nor any Gitlab repo under group/ 
+    - '!https://gitlab.com/group/**'
+    # Any other repo is fine though
+    - '*'
+# Declaratively add/deny destination clusters
+spec:
+  destinations:
+  # Do not allow any app to be installed in `kube-system`  
+  - namespace: '!kube-system'
+    server: '*'
+  # Or any cluster that has a URL of `team1-*`   
+  - namespace: '*'
+    server: '!https://team1-*'
+    # Any other namespace or server is fine though.
+  - namespace: '*'
+    server: '*'
+  # Assign application to a project: argocd app set guestbook-default --project myproject
