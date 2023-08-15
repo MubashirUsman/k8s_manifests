@@ -1,11 +1,11 @@
 # Generator: List (a literal list with elements, e.g cluster name and ip), Cluster (you ensure that new clusters are defined within argocd cluster list)
 # Git Generator: json file in git is edited and generators are updated
-# With generator we can generate parameters to be substituted in applications
-# "The purpose of the Generator is to target argocd applications to clusters and different environments"
+#     With generator we can generate parameters to be substituted in applications
+#     "The purpose of the Generator is to target argocd applications to clusters and different environments"
 # ApplicationSet controller is Used for add-ons and deploying applications to multiple clusters
 # Argocd Controller create/update/delete Application resource, 
 # takes ApplicationSet resource as input, and outputting one or more Argo CD Application resources
-# Application's k8s resources (deployments, services, configmaps etc) are created by argocd as defined in spec field: parameters from Generator + template = app
+#     Application's k8s resources (deployments, services, configmaps etc) are created by argocd as defined in spec field: parameters from Generator + template = app
 # Template fields: 
 #     project refers to the Argo CD Project in use (default may be used here to utilize the default Argo CD Project),
 #     repoURL: URL of the repository (eg https://github.com/argoproj/argocd-example-apps.git)

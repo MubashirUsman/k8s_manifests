@@ -1,0 +1,2 @@
+# Single control plane with one instance of argocd and one server url. Just one location for managing configurations (like repo credentials).
+# Requires dedicated management cluster which hosts argocd
