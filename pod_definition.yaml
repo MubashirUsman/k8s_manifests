@@ -1,7 +1,10 @@
 # The shared context of a Pod is a set of Linux namespaces, cgroups, and potentially other facets of isolation - the same things that isolate a container.
-# Containers in Pod share storage (filesystem volumes) and network resources
+# Storage: All containers in the Pod can access the shared volumes, allowing those containers to share data.
+#   Containers in Pod share storage (filesystem volumes) and network resources, 
 # Pods support multiple cooperating processes (as containers), these containers can share resources, dependencies and communicate with one another.
 # usually pods are created using workload resources (deployments or job or statefulSet, DaemonSet) and their controller, controller uses PodTemplate to create pods
+# Each workload resource implements its own strategy to replace pods if template changes
+# https://kubernetes.io/docs/concepts/workloads/pods/#pod-update-and-replacement
 # 
 # 
 apiVersion: batch/v1
