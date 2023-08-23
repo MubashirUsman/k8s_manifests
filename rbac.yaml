@@ -1,0 +1,17 @@
+# The RBAC API has four K8s objects: Role, ClusterRole, RoleBinding, ClusterRoleBinding
+# Service Accounts/Role
+# In Kubernetes, service accounts are used to provide an identity for pods or processess that run inside the pod. 
+# Pods that want to interact with the API server will authenticate with a particular service account.
+# After creating a role, you create a role-binding to bind the role with service account
+# Every pod created without specifying the service account gets assigned a default service account of that namespace
+# A service account has a token which is stored as a secret
+# To use a custom serviceAccount, specify the serviceAccountName field in POD template
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+    - name: my-pod
+      image: my-image
+  serviceAccountName: myserviceaccount # <------- 
