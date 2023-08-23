@@ -6,6 +6,7 @@
 # Every pod created without specifying the service account gets assigned a default service account of that namespace
 # A service account has a token which is stored as a secret
 # To use a custom serviceAccount, specify the serviceAccountName field in POD template
+# Three Steps: 1. Create a Service Account 2. Create a Role 3. Bind that Role to the Service Account.
 apiVersion: v1
 kind: Pod
 metadata:

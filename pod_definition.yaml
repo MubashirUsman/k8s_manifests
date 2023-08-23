@@ -5,8 +5,9 @@
 # usually pods are created using workload resources (deployments or job or statefulSet, DaemonSet) and their controller, controller uses PodTemplate to create pods
 # Each workload resource implements its own strategy to replace pods if template changes
 # https://kubernetes.io/docs/concepts/workloads/pods/#pod-update-and-replacement  https://www.redhat.com/sysadmin/kubernetes-pod-network-communications
-# 
-# 
+#   Health Checks
+#  Readiness probe: k8s will only send traffic once the pod passes readiness probe
+#  Liveness probe: is the app alive or dead, if dead replace it with new
 apiVersion: batch/v1
 kind: Job
 metadata:
