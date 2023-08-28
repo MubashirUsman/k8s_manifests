@@ -1,0 +1,2 @@
+# implements a single instance of pod on every worker node
+# Its like some collection of compute (ec2) and we will always have one pod on all of the instances.

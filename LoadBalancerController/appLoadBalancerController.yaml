@@ -1,0 +1,5 @@
+# The AWS Load Balancer Controller creates ALBs and the necessary supporting AWS 
+# resources whenever a Kubernetes ingress resource is created on the cluster with 
+# the kubernetes.io/ingress.class: alb annotation.
+# To share an application load balancer across multiple service resources using IngressGroups with the annotation:
+# alb.ingress.kubernetes.io/group.name: my-group
