@@ -1,0 +1,3 @@
+# Every pod has a unique IP throughout the cluster
+# Pods can talk to pods on all nodes without NAT
+# 

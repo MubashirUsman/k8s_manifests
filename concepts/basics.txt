@@ -1,0 +1,12 @@
+Kube-scheduler 
+    decides which pods go on which node based on the needs of the pod and capacity of the node.
+    Kube-scheduler criteria:
+        filters out nodes which do not fit the criteria, 
+        ranks nodes and places on the node which wins
+        This criteria can be changed, based on request/limits, taints/tolerations, node selectors/affinity
+
+---
+Kubelet
+    Kubelet registers nodes with apiserver
+    To run a pod, Kubelet asks container runtime to pull the image
+    It monitors Node and Pod
