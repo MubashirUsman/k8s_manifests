@@ -39,3 +39,18 @@ spec:
       limits:
         memory: "128Mi"
         cpu: "500m"
+
+# How Kubernetes applies Resource Requests and Limits
+# The kubelet passes that container's requests and limits for memory and CPU to the container runtime.
+# Container runtime configures cgroups of the kernal to apply these limits.
+
+# The CPU limits defines the ceiling on how much cpu time a container/cgroup can use.
+# CPU requests typically defines a weighting, which means when different cgroups compete with each other
+# then cgroups with larger cpu requests are allocated more cpu time. 
+# However, container runtimes don't terminate Pods or containers for excessive CPU usage.
+
+# Memory request is used for Pod scheduling mainly. 
+# The memory limit defines a memory limit for that cgroup. If the container tries to allocate more memory 
+# than this limit, the Linux kernel out-of-memory subsystem activates and, typically, intervenes by 
+# stopping one of the processes in the container that tried to allocate memory. If that process is the 
+# container's PID 1, and the container is marked as restartable, Kubernetes restarts the container.
