@@ -1,0 +1,16 @@
+# kube-scheduler uses requests of all containers to schedule a pod on a node (chooses a node using round-robin)
+# But limits could be higher than the requests, and if we have a node where the sum of all
+# container limits are higher than the resources available on the machine?
+# At this point, Kubernetes goes into something called an “overcommitted state".
+
+# For cpu, k8s will ensure that containers get the requested cpu and will throttle the rest.
+# Memory cannot be compressed, so Kubernetes needs to start making decisions on what containers 
+# to terminate if the Node runs out of memory.
+# Kubernetes looks for Pods that are using more resources than they requested. The prime candidates are 
+# containers that have gone over their request but are still under their limit. If multiple 
+# pods have gone over their requests, it will rank those pods based on priority and will terminate the 
+# lowest priority pods first.
+
+# In case a container tries to use more memory than its limit, container runtime takes the action 
+# and kernal terminates that process with OUT OF MEMORY (OOM) error.
+# 
