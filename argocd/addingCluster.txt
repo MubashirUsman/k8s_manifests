@@ -1,0 +1,2 @@
+Cluster credentials are stored in secrets in argocd namespace.
+Add as a label: argocd.argoproj.io/secret-type: cluster
