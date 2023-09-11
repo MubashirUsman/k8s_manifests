@@ -1,5 +1,16 @@
 # The AWS Load Balancer Controller creates ALBs and the necessary supporting AWS 
 # resources whenever a Kubernetes ingress resource is created on the cluster with 
-# the kubernetes.io/ingress.class: alb annotation.
-# To share an application load balancer across multiple service resources using IngressGroups with the annotation:
+# the "kubernetes.io/ingress.class: alb" annotation.
+
+# To share an application load balancer across multiple service resources use IngressGroups with the following annotation:
+# Use the same ingressGroup to share the same ALB
 # alb.ingress.kubernetes.io/group.name: my-group
+
+
+# alb.ingress.kubernetes.io/scheme: internet-facing
+# 1. The nodes of internet facing LB have public IP
+# 2. The DNS name of an internet-facing load balancer is publicly resolvable to the public IP addresses of the nodes. 
+# Therefore, internet-facing load balancers can route requests from clients over the internet.
+
+# alb.ingress.kubernetes.io/listen-ports 
+# 
