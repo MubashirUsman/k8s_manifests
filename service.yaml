@@ -1,0 +1,15 @@
+# ClusterIP, NodePort, LoadBalancer
+# Since Ips of Pods keep changing, thus services helps you reach pods.
+# The Service can be reached at the same place, at any point in time. 
+# So it serves as a stable destination that the client can use to get access to what it needs. 
+
+# ClusterIP
+# For pod to pod communication within the same cluster, it can't be reached from outside.
+# A static IP is assigned to ClusterIP service, and it remains the same for the lifetime of the service.
+
+# NodePort
+# Nodeport service opens a port on all worker nodes in range 30000-32767
+# A clusterIp service is automatically created with nodeport service. The traffic goes from node to nodeport service to clusterip to pod.
+
+# LoadBalancer
+# 

@@ -14,4 +14,8 @@
 # Therefore, internet-facing load balancers can route requests from clients over the internet.
 
 # alb.ingress.kubernetes.io/listen-ports 
+# listen-ports is merged across all Ingresses in IngressGroup.
+# If same listen-port is defined by multiple Ingress within IngressGroup, Ingress rules will be merged with respect to their group order within IngressGroup.
+# You can define different listen-ports per Ingress, Ingress rules will only impact the ports defined for that Ingress.
+
 # 
