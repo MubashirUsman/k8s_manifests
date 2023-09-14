@@ -1,9 +1,12 @@
+# AWS Load Balancer => Listener => Target Groups 
+# Listener has rules which send traffic to target groups when certain rules are met.
+# Target groups could have EC2, IPs or containers as targets to route traffic to.
+# Load balancer continously monitors the health of its targets
+# Target groups use protocol and port to route traffic. 
+
 # The AWS Load Balancer Controller creates ALBs and the necessary supporting AWS 
 # resources whenever a Kubernetes ingress resource is created on the cluster with 
 # the "kubernetes.io/ingress.class: alb" annotation.
-
-# AWS Load Balancer => Listener => Target Groups 
-# Target groups could have EC2, IPs or containers as targets to route traffic to.
 
 # Ingress Annotations
 # To share an application load balancer across multiple service resources use IngressGroups with the following annotation:
