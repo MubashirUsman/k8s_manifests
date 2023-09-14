@@ -2,6 +2,9 @@
 # resources whenever a Kubernetes ingress resource is created on the cluster with 
 # the "kubernetes.io/ingress.class: alb" annotation.
 
+# AWS Load Balancer => Listener => Target Groups 
+# Target groups could have EC2, IPs or containers as targets to route traffic to.
+
 # Ingress Annotations
 # To share an application load balancer across multiple service resources use IngressGroups with the following annotation:
 # Use the same ingressGroup to share the same ALB
