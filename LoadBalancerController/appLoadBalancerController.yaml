@@ -2,7 +2,8 @@
 # Listener has rules which send traffic to target groups when certain rules are met.
 # Target groups could have EC2, IPs or containers as targets to route traffic to.
 # Load balancer continously monitors the health of its targets
-# Target groups use protocol and port to route traffic. 
+# Target groups use protocol and port to route traffic. After creating a target group
+# we specify target-type: instance or ip, in k8s target groups 
 
 # The AWS Load Balancer Controller creates ALBs and the necessary supporting AWS 
 # resources whenever a Kubernetes ingress resource is created on the cluster with 
@@ -24,4 +25,7 @@
 # If same listen-port is defined by multiple Ingress within IngressGroup, Ingress rules will be merged with respect to their group order within IngressGroup.
 # You can define different listen-ports per Ingress, Ingress rules will only impact the ports defined for that Ingress.
 
-# 
+# alb.ingress.kubernetes.io/target-type: ip
+# target-type tells what kind of targets will be in the target groups, either instance or ip
+# Instance type: traffic starts at ALB and reaches nodes through service's nodePort
+# IP type: traffic starts at ALB and reaches k8s pods directly, in this target groups of our Pod's ips are created.
