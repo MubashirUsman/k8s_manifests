@@ -1,3 +1,5 @@
 # Every pod has a unique IP throughout the cluster
-# Pods can talk to pods on all nodes without NAT
+# Pods get their own network namespace on the node and can talk to other pods on all nodes without NAT
+# Ports are shared among containers in the same pod and can reach each other on localhost.
+# 
 # 
