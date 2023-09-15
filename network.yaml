@@ -1,5 +1,8 @@
 # Every pod has a unique IP throughout the cluster
 # Pods get their own network namespace on the node and can talk to other pods on all nodes without NAT
 # Ports are shared among containers in the same pod and can reach each other on localhost.
+# Each network namespace can have their own networking rules, those can range from firewall rules, interfaces (virtual or 
+# physical), routes, and everything else networking-related. Virtual interfaces are created from the physical interface.
 # 
+# When a pod is created, container runtime creates a network namespace, and then CNI assigns an IP to it and attach the conatainer(s) to the network (same namespace)
 # 
