@@ -1,0 +1,22 @@
+# A Volume represents a directory with data that is accessible across multiple containers in a Pod. 
+# The volume lives even when container dies and can be consumed by any number of containers in a pod.
+# 
+# A volume usage entails the declaration of the volume in a Pod by specifying a “volumes” property 
+# under the spec (spec.volumes) field in a Pod manifest file, followed by the volume in an array format. 
+# The configuration will look like this:
+spec:
+ volumes:
+ - name: xyz
+
+# A volumeMount, on the other hand, entails mounting of the declared volume into a container in the same Pod.
+# Volume and volumeMounts go hand in hand. You can not create a volume without mounting it or mount a volume that has not been created. 
+spec:
+ containers:
+ - name: my-app
+   image: nginx
+   volumeMounts:
+   - name: xyz
+     mountPath: /app/config
+
+# Ephemeral volumes have same lifetime as the Pod but persists beyond container restarts.
+# 
