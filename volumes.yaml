@@ -18,5 +18,22 @@ spec:
    - name: xyz
      mountPath: /app/config
 
-# Ephemeral volumes have same lifetime as the Pod but persists beyond container restarts.
-# 
+# Ephemeral volumes have same lifetime as the Pod but persists beyond container restarts. etc emptyDir, configMap, secret 
+# Durable volume outlives beyond the pod lifecycle, e.g hostPath
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+spec:
+  containers:
+  - name: my-app
+    image: nginx
+    ports:
+    - containerPort: 8080
+    volumeMounts:
+    - name: my-volume
+      mountPath: /app
+  volumes:
+  - name: my-volume
+    hostPath:
+      path: /mnt/vpath  
