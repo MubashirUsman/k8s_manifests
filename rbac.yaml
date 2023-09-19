@@ -8,13 +8,50 @@
 # Every pod created without specifying the service account gets assigned a default service account of that namespace
 # A service account has a token which is stored as a secret
 # To use a custom serviceAccount, specify the serviceAccountName field in POD template
-# Three Steps: 1. Create a Service Account 2. Create a Role 3. Bind that Role to the Service Account.
-apiVersion: v1
-kind: Pod
+# Three Steps: 1. Create a Service Account and provide IAM Role 2. Create a Role (specifying permissions) 3. Bind that Role to the Service Account.
+# Role Binding grants the permissions defined in a role to a user or a set of users.
+# RoleBinding holds a list of subjects (users, groups, or service accounts), and a reference to the role being granted. 
+# Role
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
 metadata:
-  name: my-pod
-spec:
-  containers:
-    - name: my-pod
-      image: my-image
-  serviceAccountName: myserviceaccount # <------- 
+  namespace: default
+  name: pod-reader
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["pods"]
+  verbs: ["get", "watch", "list"]
+---
+# ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  # "namespace" omitted since ClusterRoles are not namespaced
+  name: secret-reader
+rules:
+- apiGroups: [""]
+  #
+  # at the HTTP level, the name of the resource for accessing Secret
+  # objects is "secrets"
+  resources: ["secrets"]
+  verbs: ["get", "watch", "list"]
+
+---
+# RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+# This role binding allows "jane" to read pods in the "default" namespace.
+# You need to already have a Role named "pod-reader" in that namespace.
+kind: RoleBinding
+metadata:
+  name: read-pods
+  namespace: default
+subjects:
+# You can specify more than one "subject"
+- kind: User
+  name: jane # "name" is case sensitive
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  # "roleRef" specifies the binding to a Role / ClusterRole
+  kind: Role #this must be Role or ClusterRole
+  name: pod-reader # this must match the name of the Role or ClusterRole you wish to bind to
+  apiGroup: rbac.authorization.k8s.io

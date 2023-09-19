@@ -36,4 +36,4 @@ spec:
   volumes:
   - name: my-volume
     hostPath:
-      path: /mnt/vpath  
+      path: /mnt/vpath  #/mnt is a path on node's filesystem

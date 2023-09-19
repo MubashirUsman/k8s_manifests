@@ -1,0 +1,4 @@
+# socat TCP-LISTEN:8000,fork,reuseaddr TCP:localhost:8099
+# This command sets up a TCP port forwarding on port 8000, and any incoming connections will be 
+# forwarded to port 8099. fork allows multiple connections in parallel and reuseaddr allows the
+# quick resue of listening address.
