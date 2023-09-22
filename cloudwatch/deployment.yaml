@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-test
+spec:
+  serviceAccountName: api
+  containers:
+  - name: nginx
+    image: nginx:1.21.4
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: logger
+      mountPath: /app
+  - name: cloudwatch
+    image: amazon/cloudwatch-agent:latest
+    volumeMounts:
+    - mountPath: /etc/cwagentconfig
+      name: cwagentconfig
+    - mountPath: /app
+      name: logger
+      readOnly: true
+  volumes:
+    - name: logger
+      emptyDir: {}
+    - name: cwagentconfig
+      configMap:
+        name: cwagentconfig      
