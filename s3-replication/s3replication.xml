@@ -1,0 +1,45 @@
+Cross account replication, s3 batch replication
+
+Versioning should be enabled on both buckets
+Replication config. (as XML) won't replicate objects that existed before adding config.
+Replication config. should have destination bucket, and objects to be replicated
+With objects it also replicates ACLs, the owner in destination remains same unless othersie stated
+Objects that are already replicas, created by another CRR in the source, are not replicated.
+AWS S3 replicates metadata from the source objects to the replicas only.
+
+1. Create a role for source bucket and pass it in a replication rule for that source bucket
+2. Attach bucket policy to destination bucket
+
+...
+    <Rule>
+        <ID>Rule-1</ID>
+        <Status>Enabled-or-Disabled</Status>
+        <Filter>
+            <Prefix></Prefix>   ///to select objects based on key-prefix and object tags 
+        </Filter>
+        <Priority>integer</Priority>
+        <DeleteMarkerReplication>
+           <Status>Enabled-or-Disabled</Status>
+        </DeleteMarkerReplication>
+        <Destination>
+           <Bucket>arn:aws:s3:::DOC-EXAMPLE-BUCKET</Bucket> 
+        </Destination>    
+    </Rule>
+    <Rule>
+         ...
+    </Rule>
+     ...
+...
+
+...
+<Destination>
+       <Bucket>arn:aws:s3:::DOC-EXAMPLE-BUCKET</Bucket>
+       <StorageClass>storage-class</StorageClass>
+</Destination>
+...
+
+Replicating existing objects
+   done through the use of a Batch Operations job.
+   Source bucket must have existing replication configuration.
+   IAM role for batch Operations job
+   AWS S3 manifest

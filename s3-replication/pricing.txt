@@ -1,0 +1,12 @@
+S3 Batch Replication is built using S3 Batch Operations to replicate objects as fully managed Batch Operations jobs.
+
+you pay the S3 charges for storage in the selected destination S3 storage classes, 
+    for the primary copy, for replication PUT requests, and for applicable infrequent 
+    access storage retrieval charges. 
+When replicating across AWS Regions, you also pay for inter-Region Data Transfer OUT 
+    from S3 to each destination Region.
+In addition to these charges, you also pay the S3 Batch Operations charges for Batch Replication jobs.
+
+Batch Operations – Jobs =	$0.25 per job
+Batch Operations – Objects =	$1.00 per million objects processed
+Batch Operations – Manifest (optional) =	$0.015 per 1 million objects in the source bucket
