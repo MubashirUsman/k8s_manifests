@@ -6,6 +6,7 @@ Replication config. should have destination bucket, and objects to be replicated
 With objects it also replicates ACLs, the owner in destination remains same unless othersie stated
 Objects that are already replicas, created by another CRR in the source, are not replicated.
 AWS S3 replicates metadata from the source objects to the replicas only.
+Delete marker replication should be disabled to protect against accidental or malicious deletes.
 
 1. Create a role for source bucket and pass it in a replication rule for that source bucket
 2. Attach bucket policy to destination bucket
@@ -43,3 +44,16 @@ Replicating existing objects
    Source bucket must have existing replication configuration.
    IAM role for batch Operations job
    AWS S3 manifest
+Batch Operations ( from S3 Batch Operations home page )
+    A manifest or an inventory report is needed that contains objects to replicate
+    Re-replication of deleted objects with version id in destination is not supported (use Batch Operations Copy)
+Manifest
+    specify keys to act upon and version id
+    same Prefix and tags as replication configuration 
+Filters for a Batch Replication job
+    You can filter objects to replicate based on the "ObjectReplicationStatuses" value
+    If you want to both replicate existing objects and retry replicating objects that previously failed to replicate, include both "NONE" and "FAILED".
+    we can create Batch Operations job at the time of 1st rule creation.
+    After job is created, it enters in "Awaiting your confirmation to run" state
+Question
+    What if some objects have different versions, will all of the versions be replicated when our config is already there.
