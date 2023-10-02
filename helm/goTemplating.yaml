@@ -1,0 +1,26 @@
+# helm template <directory> //helm generates yaml on the terminal for feeding directly to k8s
+
+# we don't want to duplicate the whole yaml for multiple versions of same deployment etc.
+
+# chart.yaml charts(dir), templates(dir), values.yaml required in all charts (input to Go template)
+# helm create <name-of-chart> //to create a chart
+# chart.yaml file
+#     chart.yaml has the metadata of the chart
+#     type: application or library
+# template(dir)
+#     every yaml file in the template directory will be passed through a text processor 
+#     which will generate k8s yaml for deployment.
+#     whatever is present in curly brackets will be evaluated, can put Go code in {{}}, 
+#     In {{}} are go actions, they can refer to values.yaml
+#     {{printf "true"}}
+# values.yaml file: 
+#     file used by template directory   
+#     contains key-value pairs
+# Go templating
+#     Go actions: {{.Values.webapp.numOfReplicas}}
+#     functions: 
+#       string functions: {{lower .Values.webapp.numOfReplicas}} //lower is a function
+#       default function: {{default "<custom-value>" .Values.repoName}} //uses the custom-value if .Values.repoName is not found.
+#     pipelines:
+#       send output of one variable as input to the other
+#     control flow

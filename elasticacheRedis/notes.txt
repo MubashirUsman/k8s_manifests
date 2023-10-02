@@ -1,0 +1,20 @@
+Elasticache for Redis clusters and how more than one node per shard implements replication and help in reducing the load on the primary read-write node.
+    Data is only partitioned when there are more than one shards, and replication is only possible when the number of nodes per shard are more than one. All nodes in the same shard are synchronised asynchronously.
+    Cluster mode disabled: There is just one shard with one primary read-write node and 0-5 read only nodes, automatic failover should be enabled with multi-AZ for fault tolerance
+    Cluster mode enabled: There are more than one shards with one primary read-write node and 0-5 read only nodes
+    Nodes inside of a shard can exchange roles, i.e one primary node at one time can become a read-only node at some other time
+    Node group = shard
+
+Elasticache Nodes
+    Node is a smallest building block of Elasticache deployment.
+    Each node is of same type and same cache engine.
+    Has a network-attached RAM running a redis engine 
+    Shard: 
+        Group of 1 to 6 related nodes. 
+        If there is more than one node in a shard, the shard supports replication.
+        500 node cluster can have 83 shards with one primary and 5 replicas per shard.
+    The node limit above v5.0.6 is 500 and below is 250 nodes/custer.
+    A multiple node shard implements replication by having one read/write primary node and 1–5 replica nodes.
+    Redis cluster.
+        A Redis cluster is a logical grouping of one or more ElastiCache for Redis shards.
+    

@@ -1,0 +1,7 @@
+A job can have multiple steps in a yaml list
+
+Writing custom javascript actions
+  action.yml defines the interface of the action.
+  inputs, outputs, runtime, entrypoint file (dist/index.js)
+  when an action is called, that action is pulled and entrypoint is called.
+  
