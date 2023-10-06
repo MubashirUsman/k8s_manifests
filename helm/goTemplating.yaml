@@ -1,4 +1,8 @@
 # helm template <directory> //helm generates yaml on the terminal for feeding directly to k8s
+# helm get manifest full-coral //throws out the files used to create k8s resources 
+# helm install <chart-name> <path-to-chart-directory>
+# helm uninstall <chart-name>
+# helm repo add bitnami https://charts.bitnami.com/bitnami
 
 # we don't want to duplicate the whole yaml for multiple versions of same deployment etc.
 
