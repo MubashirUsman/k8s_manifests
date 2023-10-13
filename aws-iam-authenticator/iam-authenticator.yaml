@@ -1,0 +1,12 @@
+# IAM-Authenticator runs on EKS control plane by getting info from aws-auth
+# configMap
+# JSON Policy element: Principal
+# IAM Principal that creates the cluster is automatically granted the 
+# permission of system:masters in RBAC 
+
+# To grant more IAM principals the ability to interact with the cluster
+# edit the aws-auth configMap and create the roleBinding or clusterRoleBinding
+# with the name of the group that was specified in the aws-auth configMap.
+kubectl describe -n kube-system configmap/aws-auth
+# Roles/roleBindings or clusterRole/clusterRoleBindings 
+kubectl describe rolebinding role-binding-name -n kube-system
