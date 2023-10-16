@@ -55,3 +55,19 @@ spec:
   storageClassName: standard
   hostPath:
     path: /mnt/data
+
+# PersistentVolumeClaim is used to access the PV
+# PV can be used by multiple pods, 
+# StorageClass has: provisioner, parameter to define the key-value pairs
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: standard
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+reclaimPolicy: Retain
+allowVolumeExpansion: true
+mountOptions:
+  - debug
+volumeBindingMode: Immediate
