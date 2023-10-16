@@ -36,4 +36,22 @@ spec:
   volumes:
   - name: my-volume
     hostPath:
-      path: /mnt/vpath  #/mnt is a path on node's filesystem
+      path: /mnt/vpath  #/mnt is a directory name on node's filesystem
+
+# emptyDir volume type is created when pod starts and is deleted when pod
+# terminates.
+# hostPath allows the pod to mount a directory from the host node's filesystem.
+# Persistant volume allows you to store data beyond the lifetime of the pod,
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+  - ReadWriteOnce #read-write by a single node at a time
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard
+  hostPath:
+    path: /mnt/data
