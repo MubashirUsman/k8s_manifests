@@ -1,0 +1,16 @@
+There is a process that always runs on api Server 
+Authenticating
+    Service Accounts are users managed by K8s api
+    K8s uses client certificates, bearer tokens, or an authenticating proxy to authenticate API requests
+    As HTTP requests are made to the API server, plugins attempt to associate the following attributes with the request:
+    Username, UID, Groups are associated to the HTTP request by authentication plugins.
+    X509 Client Certs
+    Client certificate authentication is enabled by passing the --client-ca-file=SOMEFILE option
+     to API server. The referenced file must contain one or more certificate authorities to use 
+     to validate client certificates presented to the API server.
+    Static Token File 
+     The API server reads bearer tokens from a file when given the --token-auth-file=SOMEFILE 
+     option on the command line. Currently, tokens last indefinitely, and the token list cannot 
+     be changed without restarting the API server.
+     The token file is a csv file with a minimum of 3 columns: token, user name, user uid, followed 
+     by optional group names.

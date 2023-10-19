@@ -58,7 +58,9 @@ spec:
 
 # PersistentVolumeClaim is used to access the PV
 # PV can be used by multiple pods, 
-# StorageClass has: provisioner, parameter to define the key-value pairs
+# StorageClass allows PV with different capacity/performance/characteristics: 
+# You can define storage profiles for different types of workloads
+# Fields: provisioner, parameter, reclaimPolicy
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -71,3 +73,13 @@ allowVolumeExpansion: true
 mountOptions:
   - debug
 volumeBindingMode: Immediate
+# aws-ebs storageClass type 
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: slow
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: io1
+  iopsPerGB: "10"
+  fsType: ext4
