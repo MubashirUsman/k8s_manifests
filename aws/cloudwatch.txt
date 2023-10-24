@@ -1,0 +1,10 @@
+Cloudwatch
+    OK-to-Alarm or Alarm-to-OK generates an event
+    Event does an action: event is sent to an SNS topic
+    SNS topic stores this event in a stack
+    SNS topic is given to an AWS Chatbot service
+    AWS Chatbot has a slack plugin
+Evaluating an alarm
+    Individual data points for alarms
+    Period: is the time to evaluate metric for each data point
+    Evaluation Periods is the number of the most recent periods to evaluate when determining alarm state.
