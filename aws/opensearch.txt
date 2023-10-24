@@ -1,0 +1,38 @@
+EBS volume metrics every 5 mins
+Opensearch archives metrics for 2 weeks
+Cluster health and Instance health
+
+CPUUtilization -> max, avg
+    The %age of cpu usage for data nodes, max shows the node with
+    highest cpu usage. Average of all nodes in cluster.
+FreeStorageSpace -> Sum, Min, Max
+    ClusterBlockException is thrown when FreeStorageSpace = 0
+    Min/Max is least/most free space on nodes.
+    Sum shows total free space.
+JVMMemoryPressure
+    The max %age of java heap used for all nodes.
+ClusterIndexWritesBlocked
+    Shows if cluster is accepting/blocking write requests
+    accepting = 0, blocking=1
+    Factors are FreeStorageSpace and JVMMemoryPressure
+
+Recommended CloudWatch alarms
+ClusterStatus.red maximum is >= 1 for 1 minute
+    At least one primary shard and its replicas are not allocated to a node
+FreeStorageSpace //to add
+    minimum is <= 20480 for 1 minute, 25% of the storage space for each node
+Nodes minimum is < x for 1 day  
+    x number of nodes are unreachable for 1 day.
+CPUUtilization or WarmCPUUtilization    //to add
+    maximum is >= 80% for 15 minutes
+    aws.es.cpu_utilization
+MasterCPUUtilization    //to add
+    maximum is >= 50% for 15 minutes
+AutomatedSnapshotFailure maximum is >= 1 for 1 minute
+    automated snapshot failed
+    Result of red cluster health.
+    GET domain_endpoint/_snapshot/cs-automated/_all
+ThreadpoolWriteQueue average is >= 100
+    cluster is experiencing high indexing concurrency
+ThreadpoolSearchQueue average is >= 500
+    The cluster is experiencing high search concurrency

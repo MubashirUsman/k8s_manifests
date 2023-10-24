@@ -1,0 +1,4 @@
+# AWS STS enables to request temporary, limited-privilege credentials for users.
+# All sts API calls go to: https://sts.amazonaws.com
+# GetCallerIdentity: returns IAM role or user used to call the operation
+#   GetCallerIdentity returns: Account, arn, UserID
