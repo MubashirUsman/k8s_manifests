@@ -1,0 +1,10 @@
+Control Plane
+    kube-apiserver: 
+        frontend of the Kubernetes API
+        kube-apiserver is designed to scale horizontally
+    etcd: 
+        key-value store for cluster data
+    kube-scheduler: 
+        watches for newly created pods
+    kube-controller-manager: 
+        Control plane component that runs controller processes.

@@ -10,3 +10,18 @@
 kubectl describe -n kube-system configmap/aws-auth
 # Roles/roleBindings or clusterRole/clusterRoleBindings 
 kubectl describe rolebinding role-binding-name -n kube-system
+---
+# AWS IAM Authenticator for Kubernetes
+
+# Step 1
+# Create IAM role that can be assumed by authorized users, give an AWS entity in "Principal" and permission to "AssumeRole" in "Action"
+# create a role named KubernetesAdmin (will print the new role's ARN)
+aws iam create-role \
+  --role-name KubernetesAdmin \
+  --description "Kubernetes administrator role (for AWS IAM Authenticator for Kubernetes)." \
+  --assume-role-policy-document "$POLICY" \
+  --output text \
+  --query 'Role.Arn'
+
+# Step 2
+# Run the server of iam-authenticator on master nodes as a daemon-set

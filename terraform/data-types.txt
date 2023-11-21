@@ -1,0 +1,20 @@
+list: sequence of values which are iterable ["us-west-1a", "us-west-1c"]
+map: a group of values identified by named labels {name = "Mabel", age = 52}
+list and map are complex data types
+
+A literal expression is an expression that directly represents a particular constant value.
+
+Terraform's for_each meta-argument allows you to configure a set of similar resources
+    by iterating over a data structure (like map) to configure a resource for each item in that 
+    data structure. 
+    Use for_each to customize a set of similar resources that share the same lifecycle.
+    for_each supports lists and maps
+
+This Terraform configuration defines multiple VPCs, assigning each key/value pair 
+    in the var.project map to each.key and each.value respectively. When you use 
+    for_each with a list or set, each.key is the index of the item in the collection, 
+    and each.value is the value of the item.
+    
+    for_each.<variable-name-of-list-map>
+    then use each.key.<each-key-name-inside-map> or each.value.<varibale-name>
+  

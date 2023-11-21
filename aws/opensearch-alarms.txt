@@ -10,7 +10,8 @@ FreeStorageSpace -> Sum, Min, Max
     Min/Max is least/most free space on nodes.
     Sum shows total free space.
 JVMMemoryPressure
-    The max %age of java heap used for all nodes.
+    The max %age of java heap used for all nodes. System Memory Utilization
+    above 90% does not indicate 90% of heap usage and is normal. 
 ClusterIndexWritesBlocked
     Shows if cluster is accepting/blocking write requests
     accepting = 0, blocking=1
