@@ -1,1 +1,0 @@
-Manual snapshot of the indexes are needed for moving data from one cluster to another.

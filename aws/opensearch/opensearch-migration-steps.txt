@@ -1,0 +1,11 @@
+Create S3 for storing manual snapshot for OpenSearch domain
+Create roles and policy to register a manual repository 
+Open Dashboard: for this use ssh tunnel, ec2: opensearch-jarvis-live-instance
+
+
+Create IAM role to delegate permissions to OpenSearch service
+    1. Create a policy with actions that are permitted on the snapshot bucket: ActionsOnMigrationBucketForJarvisLiveOpenSearch
+    2. 
+
+1. Map the snapshot role in OpenSearch Dashboards
+    

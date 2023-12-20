@@ -1,0 +1,29 @@
+Manual snapshot of the indexes are needed for moving data from one cluster to another.
+    1. Create S3 bucket to store manual snapshot
+    2. Create IAM TheSnapshotRole with the following policy:
+                {
+            "Version": "2012-10-17",
+            "Statement": [{
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:s3:::s3-bucket-name"
+            ]
+            },
+            {
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:DeleteObject"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:s3:::s3-bucket-name/*"
+            ]
+            }
+        ]
+        }
+
+    3. 
