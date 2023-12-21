@@ -1,6 +1,6 @@
 Manual snapshot of the indexes are needed for moving data from one cluster to another.
     1. Create S3 bucket to store manual snapshot
-    2. Create IAM TheSnapshotRole with the following policy:
+    2. Create IAM TheSnapshotRole with the following policy to be assumed by opensearch:
                 {
             "Version": "2012-10-17",
             "Statement": [{
@@ -25,5 +25,36 @@ Manual snapshot of the indexes are needed for moving data from one cluster to an
             }
         ]
         }
+    Trust policy
+    {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "es.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
 
-    3. 
+    3. Create user with iamPassRole and ESHttp permission policy and add key in .aws in ec2
+    4. Map the user with role in opensearch dashboard: security => roles => role mapping 
+
+    5. Create ec2 for ssh tunnel
+    ssh -i “.ssh/<key-name>.pem” ec2-user@<instanceIP> -N -L 8100:<opensearch-endpoint-without-https>:443
+    
+    6. run the python script: migration-es.py
+ 
+    7. Open dashboard and 
+        GET _snapshot/_status
+        GET _cat/repositories?v
+        GET _cat/indices?v
+        PUT _snapshot/<repo-name-here>/<snapshot-name-to-be-taken>?wait_for_completion=true #to take snapshot
+        POST _snapshot/<repo-name-here>/<snapshot-name-to-be-restored>/_restore #to restore snapshot
+        {
+            "indices": "-.opendistro*,-.kiban*",
+            "include_global_state": false
+        }

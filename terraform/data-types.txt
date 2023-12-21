@@ -17,4 +17,4 @@ This Terraform configuration defines multiple VPCs, assigning each key/value pai
     
     for_each.<variable-name-of-list-map>
     then use each.key.<each-key-name-inside-map> or each.value.<varibale-name>
-  
+
