@@ -77,25 +77,3 @@ Manual snapshot of the indexes are needed for moving data from one cluster to an
             "include_global_state": false
         }
         DELETE /dubizzle*   #to delete indexes
-
-FOR CROSS ACCOUNT
-
-Create a user and attach this policy, use this user in opensearch of this account
-{
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Effect": "Allow",
-			"Action": "iam:PassRole",
-			"Resource": "arn:aws:iam::<account-id>:role/<TheSnapshotRole>"
-		},
-		{
-			"Effect": "Allow",
-			"Action": "es:ESHttpPut",
-			"Resource": [
-				"arn:aws:es:<region>:<account-id>:domain/<source-domain-name>/*",
-				"arn:aws:es:<region>:<account-id>:domain/<destination-domain-name>/*"
-			]
-		}
-	]
-}
