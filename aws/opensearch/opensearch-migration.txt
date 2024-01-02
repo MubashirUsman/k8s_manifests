@@ -77,3 +77,23 @@ Manual snapshot of the indexes are needed for moving data from one cluster to an
             "include_global_state": false
         }
         DELETE /dubizzle*   #to delete indexes
+
+Check indices restored in B
+        GET _cat/indices
+
+GET _cat/repositories
+
+
+PUT _snapshot/drill3-snapshot-repo/27122023
+
+
+GET _snapshot/drill3-snapshot-repo/_all
+
+
+GET _snapshot/drill3-snapshot-repo/271223/_status
+
+GET _cat/indices
+
+GET /_snapshot/_all
+
+
